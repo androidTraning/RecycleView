@@ -39,7 +39,7 @@ public class ListProduct extends AppCompatActivity implements Callback<ListProdu
         recycleView = (RecyclerView) findViewById(R.id.recycleId);
         recycleView.setVisibility(View.GONE);
         mAdapter = new ProductAdapter(this, listProducts);
-        StaggeredGridLayoutManager mLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+        StaggeredGridLayoutManager mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recycleView.setLayoutManager(mLayoutManager);
         recycleView.setAdapter(mAdapter);
 
@@ -48,7 +48,7 @@ public class ListProduct extends AppCompatActivity implements Callback<ListProdu
 
 
     private  void loadData() {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("").addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://www.json-generator.com").addConverterFactory(GsonConverterFactory.create()).build();
         NetworkInterface api = retrofit.create(NetworkInterface.class);
         Call<ListProductModel> call = api.loadQuestions("list_product");
         call.enqueue(ListProduct.this);
@@ -56,15 +56,16 @@ public class ListProduct extends AppCompatActivity implements Callback<ListProdu
 
     @Override
     public void onResponse(Call<ListProductModel> call, Response<ListProductModel> response) {
+        System.out.println(response.body().toString());
         listProducts.clear();
         listProducts.addAll(response.body().products);
         mAdapter.notifyDataSetChanged();
         recycleView.setVisibility(View.VISIBLE);
-        Log.d("Tag", "Request data " + new Gson().toJson(response));
+        Toast.makeText(this, "Response ", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onFailure(Call<ListProductModel> call, Throwable t) {
-        Toast.makeText(this, "Loi roi ", Toast.LENGTH_LONG);
+        Toast.makeText(this, "Response1", Toast.LENGTH_LONG).show();
     }
 }

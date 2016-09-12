@@ -10,6 +10,6 @@ import retrofit2.http.Query;
  */
 
 public interface NetworkInterface {
-    @GET("http://haipt151.esy.es/dichsongngu/ver1.0/dichsongngu.php")
+    @GET("/api/json/get/bUJxdabRQi?indent=2")
     Call<ListProductModel> loadQuestions(@Query("list_product") String tags);
 }

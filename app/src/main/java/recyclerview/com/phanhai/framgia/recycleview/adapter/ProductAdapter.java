@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import recyclerview.com.phanhai.framgia.recycleview.R;
@@ -34,13 +36,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        ProductModel productClicked = mListProduct.get(position);
-
+        ProductModel productData = mListProduct.get(position);
+        holder.name.setText(productData.getName());
+        Glide.with(mContext).load(productData.getImage()).into(holder.productImg);
+        holder.price.setText(String.valueOf(productData.getPrice()));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mListProduct.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

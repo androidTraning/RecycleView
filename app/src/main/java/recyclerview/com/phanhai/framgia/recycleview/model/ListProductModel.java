@@ -1,5 +1,7 @@
 package recyclerview.com.phanhai.framgia.recycleview.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -7,5 +9,6 @@ import java.util.List;
  */
 
 public class ListProductModel {
+    @SerializedName("data")
     public List<ProductModel> products;
 }
