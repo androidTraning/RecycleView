@@ -10,6 +10,6 @@ import retrofit2.http.Query;
  */
 
 public interface NetworkInterface {
-    @GET("/api/json/get/bUJxdabRQi?indent=2")
+    @GET("/api/json/get/bUqWNgwPUy?indent=2")
     Call<ListProductModel> loadQuestions(@Query("list_product") String tags);
 }
